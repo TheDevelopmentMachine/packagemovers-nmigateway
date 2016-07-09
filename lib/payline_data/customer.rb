@@ -1,6 +1,6 @@
 module PaylineData
   class Customer
-    self << class
+    class << self
       def add(params)
         customer_variables('add_customer', params)
       end
@@ -16,17 +16,16 @@ module PaylineData
       private
 
       def customer_variables(type, params)
-        variables = {}
-        variables[:customer_vault] = type
-        variables[:customer_id]    = params[:customer_id]
-        variables[:ccnumber]       = params[:ccnumber]
-        variables[:ccexp]          = params[:ccexp]
-        variables[:first_name]     = params[:first_name]
-        variables[:last_name]      = params[:last_name]
-        variables[:address1]       = params[:address1]
-        variables[:city]           = params[:city]
-        variables[:state]          = params[:state]
-        variables[:zip]            = params[:zip]
+        { customer_vault:     type,
+          customer_vault_id:  params[:customer_id],
+          ccnumber:           params[:ccnumber],
+          ccexp:              params[:ccexp],
+          first_name:         params[:first_name],
+          last_name:          params[:last_name],
+          address1:           params[:address1],
+          city:               params[:city],
+          state:              params[:state],
+          zip:                params[:zip] }
       end
     end
   end

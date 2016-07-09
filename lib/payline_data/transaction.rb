@@ -20,12 +20,11 @@ module PaylineData
       private
 
       def transaction_variables(type, params)
-        variables = {}
-        variables[:type]              = type
-        variables[:amount]            = params[:amount]
-        variables[:orderid]           = params[:order_id]
-        variables[:order_description] = params[:order_description]
-        variables[:customer_vault_id] = params[:customer_id]
+        { type:              type,
+          amount:            params[:amount],
+          orderid:           params[:order_id],
+          order_description: params[:order_description],
+          customer_vault_id: params[:customer_id] }
       end
     end
   end

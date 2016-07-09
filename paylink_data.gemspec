@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = "API for Payline Data payment gateway"
   s.authors     = ["Colton Jenkins"]
   s.email       = 'jenkinscolton7@gmail.com'
-  s.files       = ["lib/payline_data.rb"]
+  s.files       = `git ls-files`.split(/\n/)
   s.homepage    =
     'http://rubygems.org/gems/payline_data'
   s.license       = 'MIT'
