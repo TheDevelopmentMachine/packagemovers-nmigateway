@@ -14,12 +14,12 @@ module PaylineData
       end
 
       def delete_customer(params)
-        data     = credentials.merge(Customer.delete(params))
+        params   = credentials.merge(Customer.delete(params))
         response = post(create_query(params))
       end
 
       def purchase(params)
-        data     = credentials.merge(Transaction.sale(params))
+        params   = credentials.merge(Transaction.sale(params))
         response = post(create_query(params))
       end
 
