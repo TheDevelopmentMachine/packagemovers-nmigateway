@@ -3,34 +3,38 @@ module PaylineData
     class << self
       attr_accessor :username, :password
 
-      def add_customer(params)
-        params   = credentials.merge(Customer.add(params))
-        response = post(create_query(params))
+      def add_customer(args)
+        post(params(Customer.add(args)))
       end
 
-      def update_customer(params)
-        params   = credentials.merge(Customer.update(params))
-        response = post(create_query(params))
+      def update_customer(args)
+        post(params(Customer.update(args)))
       end
 
-      def delete_customer(params)
-        params   = credentials.merge(Customer.delete(params))
-        response = post(create_query(params))
+      def delete_customer(args)
+        post(params(Customer.delete(args)))
       end
 
-      def purchase(params)
-        params   = credentials.merge(Transaction.sale(params))
-        response = post(create_query(params))
+      def purchase(args)
+        post(params(Transaction.sale(args)))
+      end
+
+      def refund(args)
+        post(params(Transaction.refund(args)))
       end
 
       private
+
+      def params(args)
+        create_url_query(credentials.merge(args))
+      end
 
       def credentials
         { username: username,
           password: password }
       end
 
-      def create_query(params)
+      def create_url_query(params)
         params.map { |k, v| "#{k}=#{v}" }.join('&')
       end
 
