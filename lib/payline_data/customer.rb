@@ -1,31 +1,17 @@
 module PaylineData
   class Customer
+    # For a list of  params to pass visit https://secure.paylinedatagateway.com/gw/merchants/resources/integration/integration_portal.php#cv_variables
     class << self
       def add(params)
-        customer_variables('add_customer', params)
+        params.merge(customer_vault: 'add_customer')
       end
 
       def update(params)
-        customer_variables('update_customer', params)
+        params.merge(customer_vault: 'update_customer')
       end
 
       def delete(params)
-        customer_variables('delete_customer', params)
-      end
-
-      private
-
-      def customer_variables(type, params)
-        { customer_vault:     type,
-          customer_vault_id:  params[:customer_id],
-          ccnumber:           params[:ccnumber],
-          ccexp:              params[:ccexp],
-          first_name:         params[:first_name],
-          last_name:          params[:last_name],
-          address1:           params[:address1],
-          city:               params[:city],
-          state:              params[:state],
-          zip:                params[:zip] }
+        params.merge(customer_vault: 'delete_customer')
       end
     end
   end

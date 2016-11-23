@@ -1,25 +1,33 @@
 module PaylineData
   class Transaction
+    # For a list of params to pass visit https://secure.paylinedatagateway.com/gw/merchants/resources/integration/integration_portal.php#transaction_variables
     class << self
       def sale(params)
-        { type:              'sale',
-          amount:            params[:amount],
-          customer_vault_id: params[:customer_id] }
+        params.merge(type: 'sale')
       end
 
-      def refund(params)
-        { type:          'refund',
-          transactionid: params[:transaction_id],
-          amount:        params[:amount] }
+      def auth(params)
+        params.merge(type: 'auth')
       end
 
-      def auth
+      def credit(params)
+        params.merge(type: 'credit')
       end
 
-      def validate
+      def validate(params)
+        params.merge(type: 'validate')
       end
 
       def offline
+        params.merge(type: 'offline')
+      end
+
+      def capture(params)
+        params.merge(type: 'capture')
+      end
+
+      def void(params)
+        params.merge(type: 'void')
       end
     end
   end

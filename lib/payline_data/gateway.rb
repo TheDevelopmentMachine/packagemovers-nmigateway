@@ -1,6 +1,9 @@
 module PaylineData
   class Gateway
     class << self
+      PAYLINE_DATA_URI          = 'https://secure.paylinedatagateway.com'.freeze
+      PAYLINE_DATA_API_ENDPOINT = '/api/transact.php'.freeze
+
       attr_accessor :username, :password
 
       def add_customer(args)
@@ -35,15 +38,18 @@ module PaylineData
       end
 
       def create_url_query(params)
-        params.map { |k, v| "#{k}=#{v}" }.join('&')
+        params.reject { |k, v| v.blank? }
+              .map { |k, v| "#{k}=#{v}" }
+              .join('&')
       end
 
       def post(data)
-        uri           = URI('https://secure.paylinedatagateway.com')
+        uri           = URI(PAYLINE_DATA_URI)
         https         = Net::HTTP.new(uri.host, uri.port)
         https.use_ssl = true
+        response      = https.post(PAYLINE_DATA_API_ENDPOINT, data)
 
-        https.post('/api/transact.php', data)
+        Response.new(response)
       end
     end
   end
