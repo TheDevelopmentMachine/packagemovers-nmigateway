@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'payline_data'
-  s.version     = '1.0.0'
+  s.version     = '1.0.1'
   s.date        = '2016-07-04'
   s.summary     = 'Supports the three step processing of transactions'
   s.description = 'API for Payline Data payment gateway'
