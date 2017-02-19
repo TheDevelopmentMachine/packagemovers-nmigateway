@@ -1,7 +1,7 @@
 module PaylineData
   class Gateway
     class << self
-      PAYLINE_DATA_URI          = 'https://secure.paylinedatagateway.com'.freeze
+      PAYLINE_DATA_URI          = 'https://secure.nmi.com'.freeze
       PAYLINE_DATA_API_ENDPOINT = '/api/transact.php'.freeze
 
       attr_accessor :username, :password
@@ -38,7 +38,7 @@ module PaylineData
       end
 
       def create_url_query(params)
-        params.reject { |k, v| v.blank? }
+        params.reject { |_k, v| v.blank? }
               .map { |k, v| "#{k}=#{v}" }
               .join('&')
       end
