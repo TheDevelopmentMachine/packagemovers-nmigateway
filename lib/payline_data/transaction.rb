@@ -29,6 +29,10 @@ module PaylineData
       def void(params)
         params.merge(type: 'void')
       end
+
+      def refund(params)
+        params.merge(type: 'refund')
+      end
     end
   end
 end
